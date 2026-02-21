@@ -7,11 +7,19 @@ const cors = require('cors');
 
 const app = express();
 
+// --- BULLETPROOF CORS VIP LIST ---
+const allowedOrigins = [
+  'https://yourbooks.space',
+  'https://www.yourbooks.space',
+  'https://yourbooks-frontend.vercel.app'
+];
+
 // Middleware
 app.use(cors({
-    origin: process.env.FRONTEND_URL || '*', // Fallback to * if env is missing
+    origin: allowedOrigins, 
     credentials: true
 }));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
